@@ -1,5 +1,5 @@
 /*
-Pixel, a simple logic circuit simulator written in C++
+Pixel, a simple 2D, multiplatform application engine for OpenGL graphics written in C++
 Copyright (C) 2022 DarthChungo
 
 This program is free software: you can redistribute it and/or modify
@@ -29,7 +29,7 @@ namespace Pixel {
 }
 
 #define GATES_APPLICATION_LICENSE                                          \
-  "Pixel, a simple logic circuit simulator written in C++\n"               \
+  "Pixel, a simple 2D, multiplatform application engine for OpenGL graphics written in C++\n"               \
   "Copyright (C) 2022 DarthChungo\n"                                       \
   "\n"                                                                     \
   "This program is free software: you can redistribute it and/or modify\n" \

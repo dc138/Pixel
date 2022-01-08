@@ -16,10 +16,10 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
 
-#include "Engine/Texture.hpp"
-#include "pch.hpp"
 #include "Engine/Renderer.hpp"
 #include "Engine/Shader.hpp"
+#include "Engine/Texture.hpp"
+#include "pch.hpp"
 
 namespace Gates {
   static struct {
@@ -32,15 +32,15 @@ namespace Gates {
     GLuint gl_line_vertex_buffer = 0;
     GLuint gl_line_index_buffer  = 0;
 
-    Vertex*   tri_vertex_buffer         = nullptr;
-    Vertex*   tri_vertex_buffer_current = nullptr;
-    uint32_t* tri_index_buffer          = nullptr;
+    Vertex   *tri_vertex_buffer         = nullptr;
+    Vertex   *tri_vertex_buffer_current = nullptr;
+    uint32_t *tri_index_buffer          = nullptr;
     uint32_t  tri_vertex_count          = 0;
     uint32_t  tri_index_count           = 0;
 
-    Vertex*   line_vertex_buffer         = nullptr;
-    Vertex*   line_vertex_buffer_current = nullptr;
-    uint32_t* line_index_buffer          = nullptr;
+    Vertex   *line_vertex_buffer         = nullptr;
+    Vertex   *line_vertex_buffer_current = nullptr;
+    uint32_t *line_index_buffer          = nullptr;
     uint32_t  line_vertex_count          = 0;
     uint32_t  line_index_count           = 0;
 
@@ -89,16 +89,16 @@ namespace Gates {
     glBufferData(GL_ELEMENT_ARRAY_BUFFER, pMaxIndexCount * sizeof(uint32_t), nullptr, GL_DYNAMIC_DRAW);
 
     glEnableVertexArrayAttrib(data.gl_tri_vertex_array, 0);
-    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), (const void*)offsetof(Vertex, position));
+    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), (const void *)offsetof(Vertex, position));
 
     glEnableVertexArrayAttrib(data.gl_tri_vertex_array, 1);
-    glVertexAttribPointer(1, 4, GL_FLOAT, GL_FALSE, sizeof(Vertex), (const void*)offsetof(Vertex, color));
+    glVertexAttribPointer(1, 4, GL_FLOAT, GL_FALSE, sizeof(Vertex), (const void *)offsetof(Vertex, color));
 
     glEnableVertexArrayAttrib(data.gl_tri_vertex_array, 2);
-    glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, sizeof(Vertex), (const void*)offsetof(Vertex, tex_coord));
+    glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, sizeof(Vertex), (const void *)offsetof(Vertex, tex_coord));
 
     glEnableVertexArrayAttrib(data.gl_tri_vertex_array, 3);
-    glVertexAttribPointer(3, 1, GL_FLOAT, GL_FALSE, sizeof(Vertex), (const void*)offsetof(Vertex, tex_id));
+    glVertexAttribPointer(3, 1, GL_FLOAT, GL_FALSE, sizeof(Vertex), (const void *)offsetof(Vertex, tex_id));
 
     // Lines
     glCreateVertexArrays(1, &data.gl_line_vertex_array);
@@ -113,19 +113,19 @@ namespace Gates {
     glBufferData(GL_ELEMENT_ARRAY_BUFFER, pMaxIndexCount * sizeof(uint32_t), nullptr, GL_DYNAMIC_DRAW);
 
     glEnableVertexArrayAttrib(data.gl_line_vertex_array, 0);
-    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), (const void*)offsetof(Vertex, position));
+    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), (const void *)offsetof(Vertex, position));
 
     glEnableVertexArrayAttrib(data.gl_line_vertex_array, 1);
-    glVertexAttribPointer(1, 4, GL_FLOAT, GL_FALSE, sizeof(Vertex), (const void*)offsetof(Vertex, color));
+    glVertexAttribPointer(1, 4, GL_FLOAT, GL_FALSE, sizeof(Vertex), (const void *)offsetof(Vertex, color));
 
     glEnableVertexArrayAttrib(data.gl_line_vertex_array, 2);
-    glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, sizeof(Vertex), (const void*)offsetof(Vertex, tex_coord));
+    glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, sizeof(Vertex), (const void *)offsetof(Vertex, tex_coord));
 
     glEnableVertexArrayAttrib(data.gl_line_vertex_array, 3);
-    glVertexAttribPointer(3, 1, GL_FLOAT, GL_FALSE, sizeof(Vertex), (const void*)offsetof(Vertex, tex_id));
+    glVertexAttribPointer(3, 1, GL_FLOAT, GL_FALSE, sizeof(Vertex), (const void *)offsetof(Vertex, tex_id));
 
     white_texture.Load(glm::vec4 {1.f, 1.f, 1.f, 1.f});
-    memset(data.texture_slots, 0, pMaxTextures);
+    memset(data.texture_slots, 0, pMaxTextures * sizeof(data.texture_slots[0]));
   }
 
   void Renderer::Delete() {
@@ -250,10 +250,10 @@ namespace Gates {
     FlushLineBatch();
   }
 
-  void Renderer::DrawQuad(const glm::vec2& position,
-                          const glm::vec2& size,
-                          const glm::vec4& color,
-                          const Texture&   texture) {
+  void Renderer::DrawQuad(const glm::vec2 &position,
+                          const glm::vec2 &size,
+                          const glm::vec4 &color,
+                          const Texture   &texture) {
     if ((data.tri_index_count + 6) >= pMaxIndexCount || (data.tri_vertex_count + 4) >= pMaxVertexCount ||
         data.texture_slot_index > (pMaxTextures - 1)) {
       EndTriBatch();
@@ -313,7 +313,7 @@ namespace Gates {
     data.stats.quads_drawn++;
   }
 
-  void Renderer::DrawTri(const glm::vec2& v1, const glm::vec2& v2, const glm::vec2& v3, const glm::vec4& color) {
+  void Renderer::DrawTri(const glm::vec2 &v1, const glm::vec2 &v2, const glm::vec2 &v3, const glm::vec4 &color) {
     if ((data.tri_index_count + 3) >= pMaxIndexCount || (data.tri_vertex_count + 3) >= pMaxVertexCount) {
       EndTriBatch();
       FlushTriBatch();
@@ -348,7 +348,7 @@ namespace Gates {
     data.stats.tris_drawn++;
   }
 
-  void Renderer::DrawCircle(const glm::vec2& position, float radius, uint32_t segments, const glm::vec4& color) {
+  void Renderer::DrawCircle(const glm::vec2 &position, float radius, uint32_t segments, const glm::vec4 &color) {
     if ((data.tri_index_count + segments * 3) >= pMaxIndexCount ||
         (data.tri_vertex_count + segments + 1) >= pMaxVertexCount) {
       EndTriBatch();
@@ -383,7 +383,7 @@ namespace Gates {
     data.stats.circles_drawn++;
   }
 
-  void Renderer::DrawLine(const glm::vec2& pos1, const glm::vec2& pos2, const glm::vec4& color) {
+  void Renderer::DrawLine(const glm::vec2 &pos1, const glm::vec2 &pos2, const glm::vec4 &color) {
     if ((data.line_index_count + 2) >= pMaxIndexCount || (data.line_vertex_count + 2) >= pMaxVertexCount) {
       EndLineBatch();
       FlushLineBatch();
@@ -411,7 +411,7 @@ namespace Gates {
     data.stats.lines_drawn++;
   }
 
-  void Renderer::DrawLine(const glm::vec2& pos1, const glm::vec2& pos2, float width, const glm::vec4& color) {
+  void Renderer::DrawLine(const glm::vec2 &pos1, const glm::vec2 &pos2, float width, const glm::vec4 &color) {
     if ((data.tri_index_count + 6) >= pMaxIndexCount || (data.tri_vertex_count + 4) >= pMaxVertexCount ||
         data.texture_slot_index > (pMaxTextures - 1)) {
       EndTriBatch();
@@ -460,7 +460,7 @@ namespace Gates {
     data.stats.wide_lines_drawn++;
   }
 
-  void Renderer::OutlineQuad(const glm::vec2& position, const glm::vec2& size, const glm::vec4& color) {
+  void Renderer::OutlineQuad(const glm::vec2 &position, const glm::vec2 &size, const glm::vec4 &color) {
     if ((data.line_index_count + 8) >= pMaxIndexCount || (data.line_vertex_count + 4) >= pMaxVertexCount) {
       EndLineBatch();
       FlushLineBatch();
@@ -509,11 +509,11 @@ namespace Gates {
     data.stats.quads_outlined++;
   }
 
-  void Renderer::OutlineTri(const glm::vec2& v1,
-                            const glm::vec2& v2,
-                            const glm::vec2& v3,
+  void Renderer::OutlineTri(const glm::vec2 &v1,
+                            const glm::vec2 &v2,
+                            const glm::vec2 &v3,
                             float            width,
-                            const glm::vec4& color) {
+                            const glm::vec4 &color) {
     const float a = glm::length(v1 - v2);
     const float b = glm::length(v2 - v3);
     const float c = glm::length(v3 - v1);
@@ -593,12 +593,12 @@ namespace Gates {
     data.stats.tris_outlined++;
   }
 
-  void Renderer::BorderTri(const glm::vec2& v1,
-                           const glm::vec2& v2,
-                           const glm::vec2& v3,
+  void Renderer::BorderTri(const glm::vec2 &v1,
+                           const glm::vec2 &v2,
+                           const glm::vec2 &v3,
                            float            width,
-                           const glm::vec4& inner_color,
-                           const glm::vec4& outter_color) {
+                           const glm::vec4 &inner_color,
+                           const glm::vec4 &outter_color) {
     const float a = glm::length(v1 - v2);
     const float b = glm::length(v2 - v3);
     const float c = glm::length(v3 - v1);
@@ -700,11 +700,11 @@ namespace Gates {
     data.stats.tris_bordered++;
   }
 
-  void Renderer::OutlineCircle(const glm::vec2& position,
+  void Renderer::OutlineCircle(const glm::vec2 &position,
                                float            radius,
                                uint32_t         segments,
                                float            width,
-                               const glm::vec4& color) {
+                               const glm::vec4 &color) {
     if ((data.tri_index_count + segments * 6) >= pMaxIndexCount ||
         (data.tri_vertex_count + segments * 2) >= pMaxVertexCount) {
       EndTriBatch();
@@ -749,12 +749,12 @@ namespace Gates {
     data.stats.circles_outlined++;
   }
 
-  void Renderer::BorderCircle(const glm::vec2& position,
+  void Renderer::BorderCircle(const glm::vec2 &position,
                               float            radius,
                               uint32_t         segments,
                               float            width,
-                              const glm::vec4& inner_color,
-                              const glm::vec4& outter_color) {
+                              const glm::vec4 &inner_color,
+                              const glm::vec4 &outter_color) {
     if ((data.tri_index_count + segments * 9) >= pMaxIndexCount ||
         (data.tri_vertex_count + segments * 3 + 1) >= pMaxVertexCount) {
       EndTriBatch();
@@ -815,14 +815,14 @@ namespace Gates {
     data.stats.circles_outlined++;
   }
 
-  void Renderer::BorderSemicircle(const glm::vec2& position,
+  void Renderer::BorderSemicircle(const glm::vec2 &position,
                                   float            radius,
                                   float            start_angle,
                                   float            end_angle,
                                   uint32_t         segments,
                                   float            width,
-                                  const glm::vec4& inner_color,
-                                  const glm::vec4& outter_color) {
+                                  const glm::vec4 &inner_color,
+                                  const glm::vec4 &outter_color) {
     if ((data.tri_index_count + segments * 9) >= pMaxIndexCount ||
         (data.tri_vertex_count + segments * 3 + 4) >= pMaxVertexCount) {
       EndTriBatch();
@@ -887,15 +887,15 @@ namespace Gates {
     data.stats.semicircles_bordered++;
   }
 
-  void Renderer::BorderSemicircleCustomCenterInside(const glm::vec2& position,
-                                                    const glm::vec2& center,
+  void Renderer::BorderSemicircleCustomCenterInside(const glm::vec2 &position,
+                                                    const glm::vec2 &center,
                                                     float            radius,
                                                     float            start_angle,
                                                     float            end_angle,
                                                     uint32_t         segments,
                                                     float            width,
-                                                    const glm::vec4& inner_color,
-                                                    const glm::vec4& outter_color) {
+                                                    const glm::vec4 &inner_color,
+                                                    const glm::vec4 &outter_color) {
     if ((data.tri_index_count + segments * 9) >= pMaxIndexCount ||
         (data.tri_vertex_count + segments * 3 + 4) >= pMaxVertexCount) {
       EndTriBatch();
@@ -905,9 +905,6 @@ namespace Gates {
 
     const float inc          = (end_angle - start_angle) / segments;
     const float inner_radius = radius - (width / std::cos(inc / 2));
-
-    const glm::vec2 offset            = center - position;
-    const bool      is_center_outside = ((offset.x * offset.x) + (offset.y * offset.y)) > (radius * radius);
 
     for (uint32_t current = 0; current <= segments; current++) {
       const float current_angle = current * inc + start_angle;
@@ -963,15 +960,15 @@ namespace Gates {
     data.stats.semicircles_bordered++;
   }
 
-  void Renderer::BorderSemicircleCustomCenterOutside(const glm::vec2& position,
-                                                     const glm::vec2& center,
+  void Renderer::BorderSemicircleCustomCenterOutside(const glm::vec2 &position,
+                                                     const glm::vec2 &center,
                                                      float            radius,
                                                      float            start_angle,
                                                      float            end_angle,
                                                      uint32_t         segments,
                                                      float            width,
-                                                     const glm::vec4& inner_color,
-                                                     const glm::vec4& outter_color) {
+                                                     const glm::vec4 &inner_color,
+                                                     const glm::vec4 &outter_color) {
     if ((data.tri_index_count + segments * 9) >= pMaxIndexCount ||
         (data.tri_vertex_count + segments * 3 + 4) >= pMaxVertexCount) {
       EndTriBatch();
@@ -981,8 +978,6 @@ namespace Gates {
 
     const float inc          = (end_angle - start_angle) / segments;
     const float inner_radius = radius - (width / std::cos(inc / 2));
-
-    const glm::vec2 offset = center - position;
 
     for (uint32_t current = 0; current <= segments; current++) {
       const float current_angle = current * inc + start_angle;
@@ -1038,16 +1033,16 @@ namespace Gates {
     data.stats.semicircles_bordered++;
   }
 
-  void Renderer::SetViewProjection(const glm::mat4& view_projection) { data.view_projection = view_projection; }
+  void Renderer::SetViewProjection(const glm::mat4 &view_projection) { data.view_projection = view_projection; }
 
-  void Renderer::SetTransform(const glm::vec3& transform) {
+  void Renderer::SetTransform(const glm::vec3 &transform) {
     data.transform = glm::translate(glm::mat4(1.f), transform);
   }
 
-  void Renderer::UseCamera(const OrthographicCamera& camera) {
+  void Renderer::UseCamera(const OrthographicCamera &camera) {
     data.view_projection = camera.getViewProjectionMatrix();
   }
 
-  void                   Renderer::ResetStats() { memset(&data.stats, 0, sizeof(Stats)); }
-  const Renderer::Stats& Renderer::GetStats() { return data.stats; }
-}
+  void                   Renderer::ResetStats() { data.stats = {}; }
+  const Renderer::Stats &Renderer::GetStats() { return data.stats; }
+}  // namespace Gates

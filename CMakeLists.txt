@@ -37,18 +37,18 @@ target_precompile_headers(pixel PUBLIC include/pch.hpp)
 # Libraries
 
 add_subdirectory(lib/glfw EXCLUDE_FROM_ALL)
-target_link_libraries(pixel PRIVATE glfw)
+target_link_libraries(pixel PUBLIC glfw)
 
 add_definitions(-DGLEW_STATIC)
 add_subdirectory(lib/glew EXCLUDE_FROM_ALL)
-target_link_libraries(pixel PRIVATE libglew_static)
+target_link_libraries(pixel PUBLIC libglew_static)
 
 add_subdirectory(lib/imgui EXCLUDE_FROM_ALL)
-target_link_libraries(pixel PRIVATE imgui)
+target_link_libraries(pixel PUBLIC imgui)
 
 add_subdirectory(lib/glm EXCLUDE_FROM_ALL)
-target_link_libraries(pixel PRIVATE glm)
+target_link_libraries(pixel PUBLIC glm)
 
 add_subdirectory(lib/stb-image EXCLUDE_FROM_ALL)
-target_link_libraries(pixel PRIVATE stb-image)
+target_link_libraries(pixel PUBLIC stb-image)
 

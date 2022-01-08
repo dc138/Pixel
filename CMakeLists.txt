@@ -9,11 +9,11 @@ if(NOT CMAKE_BUILD_TYPE AND NOT CMAKE_CONFIGURATION_TYPES)
   set_property(CACHE CMAKE_BUILD_TYPE PROPERTY STRINGS "Debug" "Release" "MinSizeRel" "RelWithDebInfo")
 endif()
 
-file(GLOB_RECURSE Pixel_src
+file(GLOB_RECURSE pixel_src
      "src/*.cpp"
 )
 
-add_library(Pixel ${Pixel_src})
+add_library(pixel ${pixel_src})
 
 add_compile_options(
   -Wall -Werror -Werror -Wno-unused-parameter
@@ -27,28 +27,28 @@ add_compile_definitions(
   $<$<CONFIG:RELEASE>:NDEBUG>
 )
 
-set_property(TARGET Pixel PROPERTY CXX_STANDARD 20)
-set_property(TARGET Pixel PROPERTY C_STANDARD 17)
+set_property(TARGET pixel PROPERTY CXX_STANDARD 20)
+set_property(TARGET pixel PROPERTY C_STANDARD 17)
 
-target_include_directories(Pixel PUBLIC include)
-target_include_directories(Pixel PUBLIC lib)
-target_precompile_headers(Pixel PUBLIC include/pch.hpp)
+target_include_directories(pixel PUBLIC include)
+target_include_directories(pixel PUBLIC lib)
+target_precompile_headers(pixel PUBLIC include/pch.hpp)
 
 # Libraries
 
 add_subdirectory(lib/glfw EXCLUDE_FROM_ALL)
-target_link_libraries(Pixel PRIVATE glfw)
+target_link_libraries(pixel PRIVATE glfw)
 
 add_definitions(-DGLEW_STATIC)
 add_subdirectory(lib/glew EXCLUDE_FROM_ALL)
-target_link_libraries(Pixel PRIVATE libglew_static)
+target_link_libraries(pixel PRIVATE libglew_static)
 
 add_subdirectory(lib/imgui EXCLUDE_FROM_ALL)
-target_link_libraries(Pixel PRIVATE imgui)
+target_link_libraries(pixel PRIVATE imgui)
 
 add_subdirectory(lib/glm EXCLUDE_FROM_ALL)
-target_link_libraries(Pixel PRIVATE glm)
+target_link_libraries(pixel PRIVATE glm)
 
 add_subdirectory(lib/stb-image EXCLUDE_FROM_ALL)
-target_link_libraries(Pixel PRIVATE stb-image)
+target_link_libraries(pixel PRIVATE stb-image)
 

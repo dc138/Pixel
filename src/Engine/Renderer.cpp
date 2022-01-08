@@ -1,5 +1,5 @@
 /*
-Gates, a simple logic circuit simulator written in C++
+Pixel, a simple logic circuit simulator written in C++
 Copyright (C) 2022 DarthChungo
 
 This program is free software: you can redistribute it and/or modify
@@ -21,7 +21,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 #include "Engine/Texture.hpp"
 #include "pch.hpp"
 
-namespace Gates {
+namespace Pixel {
   static struct {
     GLuint gl_tri_vertex_array  = 0;
     GLuint gl_line_vertex_array = 0;
@@ -1045,4 +1045,4 @@ namespace Gates {
 
   void                   Renderer::ResetStats() { data.stats = {}; }
   const Renderer::Stats &Renderer::GetStats() { return data.stats; }
-}  // namespace Gates
+}  // namespace Pixel

@@ -1,5 +1,5 @@
 /*
-Gates, a simple logic circuit simulator written in C++
+Pixel, a simple logic circuit simulator written in C++
 Copyright (C) 2022 DarthChungo
 
 This program is free software: you can redistribute it and/or modify

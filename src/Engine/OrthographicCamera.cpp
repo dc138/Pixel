@@ -1,5 +1,5 @@
 /*
-Gates, a simple logic circuit simulator written in C++
+Pixel, a simple logic circuit simulator written in C++
 Copyright (C) 2022 DarthChungo
 
 This program is free software: you can redistribute it and/or modify
@@ -18,7 +18,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 #include "Engine/OrthographicCamera.hpp"
 
-namespace Gates {
+namespace Pixel {
   OrthographicCamera::OrthographicCamera(float left, float top, float right, float bottom)
       : pProjectionMatrix(glm::ortho(left, right, bottom, top, -1.f, 1.f)), pViewMatrix(1.f) {
     pViewProjectionMatrix = pProjectionMatrix * pViewMatrix;

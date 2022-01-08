@@ -1,5 +1,5 @@
 /*
-Gates, a simple logic circuit simulator written in C++
+Pixel, a simple logic circuit simulator written in C++
 Copyright (C) 2022 DarthChungo
 
 This program is free software: you can redistribute it and/or modify
@@ -21,7 +21,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 #include "pch.hpp"
 
-namespace Gates {
+namespace Pixel {
   template <typename Base, typename T>
   inline bool instanceof (const T *ptr) {
     return dynamic_cast<const Base *>(ptr) != nullptr;
@@ -29,7 +29,7 @@ namespace Gates {
 }
 
 #define GATES_APPLICATION_LICENSE                                          \
-  "Gates, a simple logic circuit simulator written in C++\n"               \
+  "Pixel, a simple logic circuit simulator written in C++\n"               \
   "Copyright (C) 2022 DarthChungo\n"                                       \
   "\n"                                                                     \
   "This program is free software: you can redistribute it and/or modify\n" \

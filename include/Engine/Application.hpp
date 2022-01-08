@@ -1,5 +1,5 @@
 /*
-Gates, a simple logic circuit simulator written in C++
+Pixel, a simple logic circuit simulator written in C++
 Copyright (C) 2022 DarthChungo
 
 This program is free software: you can redistribute it and/or modify
@@ -28,7 +28,7 @@ namespace std {
   }
 }
 
-namespace Gates {
+namespace Pixel {
   enum class rcode : uint8_t {
     ok    = 0,
     quit  = 1,
@@ -244,8 +244,8 @@ namespace Gates {
     void             ResetMouseWheel();
     bool             MouseFocus() const;
 
-    const Button& MouseButton(Gates::MouseButton button) const;
-    const Button& KeyboardKey(Gates::KeyboardKey key) const;
+    const Button& MouseButton(Pixel::MouseButton button) const;
+    const Button& KeyboardKey(Pixel::KeyboardKey key) const;
 
     const Mouse&    MouseState() const;
     const Keyboard& KeyboardState() const;

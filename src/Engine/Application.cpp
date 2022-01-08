@@ -1,5 +1,5 @@
 /*
-Gates, a simple logic circuit simulator written in C++
+Pixel, a simple logic circuit simulator written in C++
 Copyright (C) 2022 DarthChungo
 
 This program is free software: you can redistribute it and/or modify
@@ -20,7 +20,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 #include "Engine/Application.hpp"
 #include "Util/Logger.hpp"
 
-namespace Gates {
+namespace Pixel {
   static void glfw_error_callback(int error, const char* description) {
     Logger::Die("GLFW error code " + std::to_string(error) + ": " + std::string(description));
   }
@@ -68,8 +68,8 @@ namespace Gates {
   void      Application::ResetMouseWheel() { pMouse.wheel = {.0f, .0f}; }
   bool      Application::MouseFocus() const { return pHasMouseFocus; }
 
-  const Button& Application::MouseButton(Gates::MouseButton button) const { return pMouse.state[(uint8_t)button]; }
-  const Button& Application::KeyboardKey(Gates::KeyboardKey key) const { return pKeyboard.state[(uint16_t)key]; }
+  const Button& Application::MouseButton(Pixel::MouseButton button) const { return pMouse.state[(uint8_t)button]; }
+  const Button& Application::KeyboardKey(Pixel::KeyboardKey key) const { return pKeyboard.state[(uint16_t)key]; }
 
   const Mouse&    Application::MouseState() const { return pMouse; }
   const Keyboard& Application::KeyboardState() const { return pKeyboard; }
@@ -164,7 +164,7 @@ namespace Gates {
     glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
     glfwWindowHint(GLFW_SAMPLES, 4);
 
-    pWindow = glfwCreateWindow(pWindowSize.x, pWindowSize.y, "Gates", NULL, NULL);
+    pWindow = glfwCreateWindow(pWindowSize.x, pWindowSize.y, "Pixel", NULL, NULL);
     if (!pWindow) Logger::Die("GLFW window creation failed");
 
     glfwSetFramebufferSizeCallback(pWindow, pHandleFrameBufferResize);

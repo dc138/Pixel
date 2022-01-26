@@ -21,29 +21,9 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 #include "Util/Logger.hpp"
 
 namespace Pixel {
-  ShaderProgram::ShaderProgram(const char* vertex_path, const char* fragment_path) {
-    std::string       vertex_code, fragment_code;
-    std::ifstream     vertex_file, fragment_file;
-    std::stringstream vertex_stream, fragment_stream;
+  ShaderProgram::ShaderProgram() {};
 
-    vertex_file.exceptions(std::ifstream::badbit);
-    fragment_file.exceptions(std::ifstream::badbit);
-
-    vertex_file.open(vertex_path);
-    fragment_file.open(fragment_path);
-
-    if (!vertex_file.good()) Logger::Die("Cannot read vertex shader file");
-    if (!fragment_file.good()) Logger::Die("Cannot read fragment shader file");
-
-    vertex_stream << vertex_file.rdbuf();
-    fragment_stream << fragment_file.rdbuf();
-
-    vertex_file.close();
-    fragment_file.close();
-
-    vertex_code   = vertex_stream.str();
-    fragment_code = fragment_stream.str();
-
+  void ShaderProgram::LoadFromInlineCode(const std::string& vertex_code, const std::string& fragment_code) {
     const GLchar* vertex_gl_code   = vertex_code.c_str();
     const GLchar* fragment_gl_code = fragment_code.c_str();
 
@@ -84,6 +64,28 @@ namespace Pixel {
 
     glDeleteShader(vertex);
     glDeleteShader(fragment);
+  }
+
+  void ShaderProgram::LoadFromFile(const std::string& vertex_path, const std::string& fragment_path) {
+    std::ifstream     vertex_file, fragment_file;
+    std::stringstream vertex_stream, fragment_stream;
+
+    vertex_file.exceptions(std::ifstream::badbit);
+    fragment_file.exceptions(std::ifstream::badbit);
+
+    vertex_file.open(vertex_path);
+    fragment_file.open(fragment_path);
+
+    if (!vertex_file.good()) Logger::Die("Cannot read vertex shader file");
+    if (!fragment_file.good()) Logger::Die("Cannot read fragment shader file");
+
+    vertex_stream << vertex_file.rdbuf();
+    fragment_stream << fragment_file.rdbuf();
+
+    vertex_file.close();
+    fragment_file.close();
+
+    LoadFromInlineCode(vertex_stream.str(), fragment_stream.str());
   }
 
   GLuint ShaderProgram::getProgram() { return pProgram; }

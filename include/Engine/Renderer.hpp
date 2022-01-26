@@ -162,6 +162,36 @@ namespace Pixel {
    public:
     static Texture white_texture;
   };
+
+  const std::string simple_vertex_shader_code =
+      "#version 460 core\n"
+      "layout(location = 0) in vec3 position;\n"
+      "layout(location = 1) in vec4 color;\n"
+      "layout(location = 2) in vec2 tex_coord;\n"
+      "layout(location = 3) in float tex_index;\n"
+      "out vec4  our_color;\n"
+      "out vec2  our_tex_coord;\n"
+      "out float our_tex_index;\n"
+      "uniform mat4 u_view_projection;\n"
+      "uniform mat4 u_transform;\n"
+      "void main() {\n"
+      "gl_Position   = u_view_projection * u_transform * vec4(position, 1.0f);\n"
+      "our_color     = color;\n"
+      "our_tex_coord = tex_coord;\n"
+      "our_tex_index = tex_index;\n"
+      "}\n";
+
+  const std::string simple_fragment_shader_code =
+      "#version 460 core\n"
+      "in vec4 our_color;\n"
+      "in vec2 our_tex_coord;\n"
+      "in float our_tex_index;\n"
+      "out vec4 color;\n"
+      "uniform sampler2D u_textures[8];\n"
+      "void main() {\n"
+      "int index = int(our_tex_index);\n"
+      "color = texture(u_textures[index], our_tex_coord) * our_color;\n"
+      "}\n";
 }
 
 #endif

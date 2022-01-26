@@ -24,7 +24,10 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 namespace Pixel {
   class ShaderProgram {
    public:
-    ShaderProgram(const char* vertex_path, const char* fragment_path);
+    ShaderProgram();
+
+    void LoadFromInlineCode(const std::string& vertex_code, const std::string& fragment_code);
+    void LoadFromFile(const std::string& vertex_path, const std::string& fragment_path);
 
     GLuint getProgram();
     void   Use();

@@ -59,7 +59,8 @@ namespace Pixel {
 
   void Renderer::Init() {
     // Shaders
-    data.shader_program = std::make_unique<ShaderProgram>("assets/shaders/shader.vert", "assets/shaders/shader.frag");
+    data.shader_program = std::make_unique<ShaderProgram>();
+    data.shader_program->LoadFromInlineCode(simple_vertex_shader_code, simple_fragment_shader_code);
     data.shader_program->Use();
 
     int samplers[pMaxTextures];

@@ -17,7 +17,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
 
 #include "pch.hpp"
-#include "Engine/Shader.hpp"
+#include "Pixel/Shader.hpp"
 #include "Util/Logger.hpp"
 
 namespace Pixel {

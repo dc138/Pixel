@@ -16,9 +16,9 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
 
-#include "Engine/Renderer.hpp"
-#include "Engine/Shader.hpp"
-#include "Engine/Texture.hpp"
+#include "Pixel/Renderer.hpp"
+#include "Pixel/Shader.hpp"
+#include "Pixel/Texture.hpp"
 #include "pch.hpp"
 
 namespace Pixel {

@@ -20,8 +20,8 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 #define GATES_RENDERER_HPP
 
 #include "pch.hpp"
-#include "Engine/OrthographicCamera.hpp"
-#include "Engine/Texture.hpp"
+#include "Pixel/OrthographicCamera.hpp"
+#include "Pixel/Texture.hpp"
 
 namespace Pixel {
   struct Vertex {

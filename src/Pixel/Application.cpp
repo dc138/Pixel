@@ -17,7 +17,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
 
 #include "pch.hpp"
-#include "Engine/Application.hpp"
+#include "Pixel/Application.hpp"
 #include "Util/Logger.hpp"
 
 namespace Pixel {

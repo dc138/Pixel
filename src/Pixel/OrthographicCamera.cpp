@@ -16,7 +16,7 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
 
-#include "Engine/OrthographicCamera.hpp"
+#include "Pixel/OrthographicCamera.hpp"
 
 namespace Pixel {
   OrthographicCamera::OrthographicCamera(float left, float top, float right, float bottom)

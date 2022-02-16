@@ -1,5 +1,5 @@
 /*
-Gates, a simple logic circuit simulator written in C++
+Pixel, a simple 2D, multiplatform application engine for OpenGL graphics written in C++
 Copyright (C) 2022 DarthChungo
 
 This program is free software: you can redistribute it and/or modify
@@ -16,17 +16,19 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
 
-#version 460 core
+#ifndef PIXEL_HPP
+#define PIXEL_HPP
 
-in vec4 our_color;
-in vec2 our_tex_coord;
-in float our_tex_index;
+#include "pch.hpp"
 
-out vec4 color;
+#include "Pixel/Application.hpp"
+#include "Pixel/OrthographicCamera.hpp"
+#include "Pixel/Renderer.hpp"
+#include "Pixel/Shader.hpp"
+#include "Pixel/Texture.hpp"
 
-uniform sampler2D u_textures[8];
+#include "Util/Logger.hpp"
+#include "Util/Misc.hpp"
+#include "Util/UUID.hpp"
 
-void main() {
-  int index = int(our_tex_index);
-  color = texture(u_textures[index], our_tex_coord) * our_color;
-}
+#endif

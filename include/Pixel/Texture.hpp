@@ -16,8 +16,8 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef GATES_TEXTURE_HPP
-#define GATES_TEXTURE_HPP
+#ifndef PIXEL_TEXTURE_HPP
+#define PIXEL_TEXTURE_HPP
 
 #include "pch.hpp"
 

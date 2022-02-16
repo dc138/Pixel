@@ -16,8 +16,8 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef GATES_RENDERER_HPP
-#define GATES_RENDERER_HPP
+#ifndef PIXEL_RENDERER_HPP
+#define PIXEL_RENDERER_HPP
 
 #include "pch.hpp"
 #include "Pixel/OrthographicCamera.hpp"

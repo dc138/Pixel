@@ -16,8 +16,8 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef GATES_SHADER_HPP
-#define GATES_SHADER_HPP
+#ifndef PIXEL_SHADER_HPP
+#define PIXEL_SHADER_HPP
 
 #include "pch.hpp"
 

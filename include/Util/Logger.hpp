@@ -16,8 +16,8 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef GATES_LOGGER_HPP
-#define GATES_LOGGER_HPP
+#ifndef PIXEL_LOGGER_HPP
+#define PIXEL_LOGGER_HPP
 
 #include "pch.hpp"
 

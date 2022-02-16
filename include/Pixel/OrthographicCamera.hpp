@@ -16,8 +16,8 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef GATES_ORTHOGRAPHICCAMERA_HPP
-#define GATES_ORTHOGRAPHICCAMERA_HPP
+#ifndef PIXEL_ORTHOGRAPHICCAMERA_HPP
+#define PIXEL_ORTHOGRAPHICCAMERA_HPP
 
 #include "pch.hpp"
 
